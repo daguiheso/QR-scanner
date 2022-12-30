@@ -7,6 +7,7 @@ class CustomNavigationBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
     return BottomNavigationBar(
       elevation: 0,
       items: const [
@@ -16,7 +17,7 @@ class CustomNavigationBar extends StatelessWidget {
         ),
         BottomNavigationBarItem(
           icon: Icon(Icons.compass_calibration),
-          label: 'Adresses'
+          label: 'Addresses'
         ),
       ],
     );
