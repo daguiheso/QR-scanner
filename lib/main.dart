@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:qr_reader/providers/ui_provider.dart';
 
 import 'package:qr_reader/pages/home_page.dart';
 import 'package:qr_reader/pages/map_page.dart';
@@ -10,29 +12,34 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'QR Reder',
-      initialRoute: 'home',
-      routes: {
-        'home': (_) => const HomePage(),
-        'map': (_) => const MapPage(),
-      },
-      theme: ThemeData(
-        primaryColor: Colors.deepPurple,
-        appBarTheme: const AppBarTheme(
-          iconTheme: IconThemeData(
-            color: Colors.white, //change your color here
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) => UiProvider())
+      ],
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        title: 'QR Reder',
+        initialRoute: 'home',
+        routes: {
+          'home': (_) => const HomePage(),
+          'map': (_) => const MapPage(),
+        },
+        theme: ThemeData(
+          primaryColor: Colors.deepPurple,
+          appBarTheme: const AppBarTheme(
+            iconTheme: IconThemeData(
+              color: Colors.white, //change your color here
+            ),
+            color: Colors.deepPurple,
+            elevation: 0,
           ),
-          color: Colors.deepPurple,
-          elevation: 0,
+          floatingActionButtonTheme: const FloatingActionButtonThemeData(
+            backgroundColor: Colors.deepPurple
+          ),
+          bottomNavigationBarTheme: const BottomNavigationBarThemeData(
+            selectedItemColor: Colors.deepPurple
+          )
         ),
-        floatingActionButtonTheme: const FloatingActionButtonThemeData(
-          backgroundColor: Colors.deepPurple
-        ),
-        bottomNavigationBarTheme: const BottomNavigationBarThemeData(
-          selectedItemColor: Colors.deepPurple
-        )
       ),
     );
   }
