@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import 'package:qr_reader/providers/db_provider.dart';
+import 'package:qr_reader/providers/scan_list_provider.dart';
 import '../providers/ui_provider.dart';
 
 import 'package:qr_reader/pages/addresses_page.dart';
@@ -39,19 +39,17 @@ class _HomePageBody extends StatelessWidget {
   Widget build(BuildContext context) {
     // connect with provider
     final uiProvider = Provider.of<UiProvider>(context);
+    final scanListProvider = Provider.of<ScanListProvider>(context, listen: false);
 
     final currentIndex = uiProvider.selectedMenuOpt;
 
-    final tempScan = new ScanModel(value: 'http://google.com');
-    // TODO: Temporal
-    // DBProvider.db.newScan(tempScan);
-    DBProvider.db.deleteAllScans();
-
     switch(currentIndex) {
       case 0:
+        scanListProvider.loadScanByType('geo');
         return const MapsPage();
 
       case 1:
+        scanListProvider.loadScanByType('http');
         return const AddressesPage();
 
       default:
