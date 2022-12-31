@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import 'package:qr_reader/providers/scan_list_provider.dart';
 import '../providers/ui_provider.dart';
+import 'package:qr_reader/providers/scan_list_provider.dart';
 
-import 'package:qr_reader/pages/addresses_page.dart';
-import 'package:qr_reader/pages/maps_page.dart';
 import 'package:qr_reader/widgets/custom_navigation_bar.dart';
 import 'package:qr_reader/widgets/scan_button.dart';
+import 'package:qr_reader/widgets/scan_tiles.dart';
+
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -49,14 +49,14 @@ class _HomePageBody extends StatelessWidget {
     switch(currentIndex) {
       case 0:
         scanListProvider.loadScanByType('geo');
-        return const MapsPage();
+        return const ScanTiles(type: 'geo');
 
       case 1:
         scanListProvider.loadScanByType('http');
-        return const AddressesPage();
+        return const ScanTiles(type: 'http');
 
       default:
-        return const MapsPage();
+        return const ScanTiles(type: 'geo');
     }
 
   }
