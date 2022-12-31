@@ -22,6 +22,7 @@ class ScanButton extends StatelessWidget {
 
         final scanListProvider = Provider.of<ScanListProvider>(context, listen: false);
         scanListProvider.newScan(barcodeScanRes);
+        scanListProvider.newScan('geo:15.33,15.66');
       }
     );
   }
