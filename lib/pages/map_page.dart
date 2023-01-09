@@ -30,6 +30,12 @@ class _MapPageState extends State<MapPage> {
       tilt: 80,
     );
 
+    Set<Marker> markers = Set<Marker>();
+    markers.add(Marker(
+      markerId: const MarkerId('geo-location'),
+      position: resultLatLng
+    ));
+
     return Scaffold(
       appBar: AppBar(
         title: const Text('Map'),
@@ -37,6 +43,7 @@ class _MapPageState extends State<MapPage> {
       body: GoogleMap(
         myLocationButtonEnabled: false,
         mapType: MapType.normal,
+        markers: markers,
         initialCameraPosition: initialPoint,
         onMapCreated: (GoogleMapController controller) {
           _controller.complete(controller);
