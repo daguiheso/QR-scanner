@@ -36,9 +36,20 @@ class _MapPageState extends State<MapPage> {
       position: resultLatLng
     ));
 
+    Future<void> goToInitialPosition() async {
+      final GoogleMapController controller = await _controller.future;
+      controller.animateCamera(CameraUpdate.newCameraPosition(initialPoint));
+    }
+
     return Scaffold(
       appBar: AppBar(
         title: const Text('Map'),
+        actions: [
+          IconButton(
+            onPressed: () => goToInitialPosition(),
+            icon: const Icon(Icons.center_focus_strong)
+          )
+        ],
       ),
       body: GoogleMap(
         myLocationButtonEnabled: false,
@@ -49,9 +60,10 @@ class _MapPageState extends State<MapPage> {
           _controller.complete(controller);
         },
       ),
-      // body: Center(
-      //   child: Text(scan['value']),
-      // ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {},
+        child: const Icon(Icons.layers)
+      ),
     );
   }
 }
