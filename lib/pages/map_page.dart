@@ -26,8 +26,8 @@ class _MapPageState extends State<MapPage> {
 
     CameraPosition initialPoint = CameraPosition(
       target: resultLatLng,
-      zoom: 18,
-      tilt: 80,
+      zoom: 22,
+      tilt: 120,
     );
 
     Set<Marker> markers = Set<Marker>();
