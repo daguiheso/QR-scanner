@@ -19,8 +19,8 @@ class ScanButton extends StatelessWidget {
         //   false,
         //   ScanMode.QR
         // );
-        const barcodeScanRes = 'http://www.google.com';
-        // const barcodeScanRes = 'geo:4.648804,-74.077778';
+        // const barcodeScanRes = 'http://www.google.com';
+        const barcodeScanRes = 'geo:4.581244,-74.160369';
 
         if (barcodeScanRes == '-1') return;
 

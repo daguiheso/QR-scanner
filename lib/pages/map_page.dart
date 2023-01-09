@@ -14,21 +14,29 @@ class _MapPageState extends State<MapPage> {
   final Completer<GoogleMapController> _controller =
       Completer<GoogleMapController>();
 
-  static const CameraPosition initialPoint = CameraPosition(
-    target: LatLng(37.42796133580664, -122.085749655962),
-    zoom: 14.4746,
-  );
-
   @override
   Widget build(BuildContext context) {
     final scan = ModalRoute.of(context)?.settings.arguments as Map;
+
+    final latLng = scan['value'].substring(4).split(',');
+    final lat = double.parse(latLng[0]);
+    final lng = double.parse(latLng[1]);
+
+    final resultLatLng = LatLng(lat, lng);
+
+    CameraPosition initialPoint = CameraPosition(
+      target: resultLatLng,
+      zoom: 18,
+      tilt: 80,
+    );
 
     return Scaffold(
       appBar: AppBar(
         title: const Text('Map'),
       ),
       body: GoogleMap(
-        mapType: MapType.hybrid,
+        myLocationButtonEnabled: false,
+        mapType: MapType.normal,
         initialCameraPosition: initialPoint,
         onMapCreated: (GoogleMapController controller) {
           _controller.complete(controller);
