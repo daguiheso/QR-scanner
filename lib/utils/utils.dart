@@ -12,7 +12,7 @@ Future<void> launchUrl(BuildContext context, ScanModel scan) async {
       throw 'Could not launch $url';
     }
   } else {
-    Navigator.pushNamed(context, 'map', arguments: scan.toJson());
+    Navigator.pushNamed(context, 'map', arguments: scan);
   }
 
 }

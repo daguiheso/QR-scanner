@@ -2,6 +2,7 @@ import 'dart:async';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 import 'package:flutter/material.dart';
+import 'package:qr_reader/providers/db_provider.dart';
 
 class MapPage extends StatefulWidget {
   const MapPage({super.key});
@@ -16,16 +17,10 @@ class _MapPageState extends State<MapPage> {
 
   @override
   Widget build(BuildContext context) {
-    final scan = ModalRoute.of(context)?.settings.arguments as Map;
-
-    final latLng = scan['value'].substring(4).split(',');
-    final lat = double.parse(latLng[0]);
-    final lng = double.parse(latLng[1]);
-
-    final resultLatLng = LatLng(lat, lng);
+    final scan = ModalRoute.of(context)?.settings.arguments as ScanModel;
 
     CameraPosition initialPoint = CameraPosition(
-      target: resultLatLng,
+      target: scan.getLatLng(),
       zoom: 22,
       tilt: 120,
     );
@@ -33,7 +28,7 @@ class _MapPageState extends State<MapPage> {
     Set<Marker> markers = Set<Marker>();
     markers.add(Marker(
       markerId: const MarkerId('geo-location'),
-      position: resultLatLng
+      position: scan.getLatLng()
     ));
 
     Future<void> goToInitialPosition() async {

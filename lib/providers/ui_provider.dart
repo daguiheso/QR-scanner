@@ -11,6 +11,4 @@ class UiProvider extends ChangeNotifier {
     _selectedMenuOpt = i;
     notifyListeners();
   }
-
-
 }
